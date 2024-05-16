@@ -16,6 +16,9 @@ void gradient_magnitude(float *result, const float *d_x, const float *d_y,
     (void)d_y;
     (void)w;
     (void)h;
+    for (int i =0;i<w*h;i++ ) {
+        result[i]= sqrt(pow(d_x[i], 2) + pow(d_y[i], 2));
+    }
 
     // TODO: Implement me!
 }
