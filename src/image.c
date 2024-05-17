@@ -58,19 +58,19 @@ float get_pixel_value(const float *img, int w, int h, int x, int y) {
         if (x==-1){
             x=0;
         }else{x=1;}
-    }else if(x>h-1){
-        if (x==h){
-            x=h-1;
-        }else{ x=h-2;}
+    }else if(x>w-1){
+        if (x==w){
+            x=w-1;
+        }else{ x=w-2;}
     }
     if (y<0) {
         if (y==-1){
             y=0;
         }else{y=1;}
-    }else if(y>w-1){
-        if (y==w){
-            y=w-1;
-        }else{ y=w-2;}
+    }else if(y>h-1){
+        if (y==h){
+            y=h-1;
+        }else{ y=h-2;}
     }
     return img[y*w+x];
 
