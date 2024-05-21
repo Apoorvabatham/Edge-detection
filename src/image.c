@@ -81,15 +81,14 @@ float get_pixel_value(const float *img, int w, int h, int x, int y) {
 
 float *array_init(int size) {
     (void)size;
-
+    float *array= calloc (size, sizeof(float));
     // TODO: Implement me!
-
-    return NULL;
+    return array;
 }
 
 void array_destroy(float *m) {
     (void)m;
-
+    free (m);
     // TODO: Implement me!
 }
 
@@ -97,10 +96,37 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
     (void)filename;
     (void)w;
     (void)h;
-
     // TODO: Implement me!
+    FILE *f=fopen (filename, "r");
+    if (f==NULL) {
+        return NULL;
+    }
+    char sa[3];
+    int ma;
+    
+    fscanf (f,"%2s\n%d %d\n%d\n",sa ,w , h, &ma );
 
-    return NULL;
+     if ((strcmp(sa,"P2" ))!=0 ||*w<=0 || *h<=0 || ma!=255  ) {
+        fclose(f);
+       return NULL;
+    }
+    int siz = (*w)* (*h);
+    float *array= array_init (siz);
+    int temp;
+    int i=0;
+    while(!feof(f)){ 
+        fscanf(f, "%d ",&temp);
+     if (temp<0|| temp>255){
+        array_destroy(array);
+        fclose (f);
+        return NULL;
+     }else { array[i] = temp; i++; }
+    }
+    if(i!=siz){fclose (f);
+        return NULL;
+    }
+    fclose (f);
+    return array;
 }
 
 void write_image_to_file(const float *img, int w, int h, const char *filename) {
@@ -108,6 +134,19 @@ void write_image_to_file(const float *img, int w, int h, const char *filename) {
     (void)w;
     (void)h;
     (void)filename;
+       FILE *f=fopen (filename, "w");
+       if (f==NULL){
+        printf("file not appropriate");
+        return;
+       }
+    fprintf(f,"P2\n%d %d\n255\n ",w, h);
+    for(int j=0;j<h;j++){
+        for (int i=0; i<w;i++){
+              fprintf(f,"%d ",(int)img[j*w+i]);
+        }
+      fprintf(f,"\n");
+    }
+    fclose(f);
 
     // TODO: Implement me!
 }
