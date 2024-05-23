@@ -118,6 +118,7 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
 void write_image_to_file(const float *img, int w, int h, const char *filename) {
   
        FILE *f=fopen (filename, "w");
+      if (f==NULL){return;} 
     fprintf(f,"P2\n%d %d\n255\n ",w, h);
     for(int j=0;j<h;j++){
         for (int i=0; i<w;i++){
