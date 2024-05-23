@@ -7,6 +7,7 @@
 #include "gaussian_kernel.h"
 #include "image.h"
 
+
 int main(int const argc, char **const argv) {
     /**
      * Parse arguments. The parsed image file name and threshold are available
@@ -27,7 +28,7 @@ int main(int const argc, char **const argv) {
     // TODO: Implement me!
     int w;
     int h;
-       float *image= read_image_from_file( "image_file_name", &w, &h);
+       float *image= read_image_from_file(image_file_name, &w, &h);
        if (image ==NULL){return 1;}
     /**
      * Blur the image by using convolve with the given Gaussian kernel matrix
