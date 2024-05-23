@@ -8,10 +8,7 @@
 #include <string.h>
 
 void apply_threshold(float *img, int w, int h, int T) {
-    (void)img;
-    (void)w;
-    (void)h;
-    (void)T;
+   
     for (int i =0;i<w*h;i++ ) {
         if (img[i]<= T) {
             img[i]=0;
@@ -24,10 +21,7 @@ void apply_threshold(float *img, int w, int h, int T) {
 }
 
 void scale_image(float *result, const float *img, int w, int h) {
-    (void)result;
-    (void)img;
-    (void)w;
-    (void)h;
+   
     float min = img[0];
         float max =img[0];
         //finding max and min
@@ -49,11 +43,7 @@ void scale_image(float *result, const float *img, int w, int h) {
 }
 
 float get_pixel_value(const float *img, int w, int h, int x, int y) {
-    (void)img;
-    (void)w;
-    (void)h;
-    (void)x;
-    (void)y;
+    
     if (x<0) {
         if (x==-1){
             x=0;
@@ -76,26 +66,22 @@ float get_pixel_value(const float *img, int w, int h, int x, int y) {
 
     // TODO: Implement me!
 
-    return 0;
 }
 
 float *array_init(int size) {
-    (void)size;
+   
     float *array= calloc (size, sizeof(float));
     // TODO: Implement me!
     return array;
 }
 
 void array_destroy(float *m) {
-    (void)m;
     free (m);
     // TODO: Implement me!
 }
 
 float *read_image_from_file(const char *filename, int *w, int *h) {
-    (void)filename;
-    (void)w;
-    (void)h;
+   
     // TODO: Implement me!
     FILE *f=fopen (filename, "r");
     if (f==NULL) {
@@ -130,15 +116,8 @@ float *read_image_from_file(const char *filename, int *w, int *h) {
 }
 
 void write_image_to_file(const float *img, int w, int h, const char *filename) {
-    (void)img;
-    (void)w;
-    (void)h;
-    (void)filename;
+  
        FILE *f=fopen (filename, "w");
-       if (f==NULL){
-        printf("file not appropriate");
-        return;
-       }
     fprintf(f,"P2\n%d %d\n255\n ",w, h);
     for(int j=0;j<h;j++){
         for (int i=0; i<w;i++){
