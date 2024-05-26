@@ -41,8 +41,7 @@ int main(int const argc, char **const argv) {
     float *blur_img=array_init(w*h);
     if (blur_img==NULL){return 1;}
        convolve(blur_img, image, w, h, gaussian_k, gaussian_w, gaussian_h);
-       char *ob ="out_blur.pgm";
-       write_image_to_file(blur_img, w,h, ob);
+       write_image_to_file(blur_img, w,h, "out_blur.pgm");
     /**
      * Compute the derivation of the blurred image computed above in both x and
      * y direction.
