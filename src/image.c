@@ -43,24 +43,16 @@ void scale_image(float *result, const float *img, int w, int h) {
 }
 
 float get_pixel_value(const float *img, int w, int h, int x, int y) {
-    
+    if (w<=0 || h<=0 || img==NULL){return 0.0f ;}
     if (x<0) {
-        if (x==-1){
-            x=0;
-        }else{x=1;}
+        x=-x-1;
     }else if(x>w-1){
-        if (x==w){
-            x=w-1;
-        }else{ x=w-2;}
+        x=2*w -x -1;
     }
     if (y<0) {
-        if (y==-1){
-            y=0;
-        }else{y=1;}
+        y=-y-1;
     }else if(y>h-1){
-        if (y==h){
-            y=h-1;
-        }else{ y=h-2;}
+        y=2*h -y -1;
     }
     return img[y*w+x];
 
